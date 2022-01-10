@@ -2,12 +2,11 @@
 #include <random>
 #include <string>
 #include <vector>
-#include "Card.h"
+#include "Card.cpp"
 
 using namespace std;
 
 int main() {
-
     Card card;
     int choice;
     bool exitGame = true;
@@ -26,7 +25,7 @@ int main() {
         {
         case 1:
             cout << "Welcome to Blackjack!\n";
-            card.shuffleVector(card.cards);
+            card.shuffleVector();
             card.Play();
             cout << endl;
             break;

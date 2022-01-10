@@ -1,15 +1,13 @@
 #include "Card.h"
-#include "Player.h"
-#include "Dealer.h"
-using namespace std;
-
+#include "Player.cpp"
+#include "Dealer.cpp"
 
 Dealer dealer;
 Player player;
 
 Card::Card()
 {
-    *cards = { 1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13 };
+    cards = std::vector<int>{ 1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13};
 
     playerSum = player.getPlayerSum();
     dealerFirstSum = dealer.getDealerFirstSum();
@@ -23,11 +21,12 @@ Card::~Card()
 }
    
 
-void Card::shuffleVector(std::vector<int> *cards)
+void Card::shuffleVector()
 {
-    std::random_device random;
-    std::mt19937 g(random());
-    shuffle(this->cards->begin(), this->cards->end(), random);
+     std::random_device rd;
+    std::mt19937 g(rd());
+ 
+    std::shuffle(cards.begin(), cards.end(), g);
 }
 
 int Card::askContinueGame() {
@@ -42,7 +41,7 @@ int Card::askContinueGame() {
 
 void Card::Play()
 {   
-    while (playerSum < 21)
+    if (playerSum < 21)
     {
         if (playerSum == 0)
         {
@@ -111,20 +110,20 @@ void Card::showRecord()
 void Card::printVector()
 { 
     for (int i = 0; i < 52; i++) {
-        cout << this->cards->at(i) << ' ';
+        cout << cards[i] << ' ';
     }
 }
 
 
-int Card::getLastVectorElement(std::vector<int>* cardVector)
+int Card::getLastVectorElement(std::vector<int> cards)
 {
-    int& ref = this->cards->back();
+    int &ref = cards.back();
     return ref;
 }
 
-void Card::deleteLastVectorElement(std::vector<int>* cardVector)
+void Card::deleteLastVectorElement(std::vector<int> cards)
 {
-    this->cards->pop_back();
+    cards.pop_back();
 }
 
 void Card::hitOrStand()

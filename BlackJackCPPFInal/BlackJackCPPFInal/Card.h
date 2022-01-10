@@ -3,7 +3,11 @@
 #include <random>
 #include <vector>
 #include <numeric>
-#include "Player.h"
+
+#include <string>       //std::string
+#include <ctime>        // std::time
+#include <cstdlib>      // std::rand, std::srand
+
 #pragma once
 #ifndef CARD_H
 #define CARD_H
@@ -17,17 +21,17 @@ public:
     int dealerFirstSum;
     int dealerSecondSum;
     int dealerThirdSum;
-    std::vector<int> *cards;
+    std::vector<int> cards = std::vector<int>(52);
 
     Card();
    
     ~Card();  
   
-    int getLastVectorElement(std::vector<int> *cards);
+    int getLastVectorElement(std::vector<int> cards);
 
-    void deleteLastVectorElement(std::vector<int> *cards);
+    void deleteLastVectorElement(std::vector<int> cards);
 
-    void shuffleVector(std::vector<int> *cards);
+    void shuffleVector();
 
     int askContinueGame();
 

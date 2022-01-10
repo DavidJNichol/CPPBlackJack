@@ -12,7 +12,6 @@ Player::~Player()
 
 }
 
-//IT WORKS BUT SHIT DOESNT GET INITIATED
 void Player::playerTurn() 
 {
     int choosen_card;
@@ -25,7 +24,7 @@ void Player::playerTurn()
 
 void Player::setPlayerSum(int choosen_card) 
 {
-    this-> playerSum += choosen_card;
+    playerSum += choosen_card;
 }
 
 int Player::getPlayerSum() 
